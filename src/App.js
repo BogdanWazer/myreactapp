@@ -1,8 +1,12 @@
-
+import Add from './components/Add';
+import Greetings from './components/Greetings';
 
 function App() {
   return (
-    <h1>Hello to react!</h1>
+    <>
+      <Add />
+      <Greetings />
+    </>
   );
 }
 
