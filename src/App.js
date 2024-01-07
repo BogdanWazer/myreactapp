@@ -1,18 +1,30 @@
 import Add from './components/Add';
 import Greetings from './components/Greetings';
 import User from './components/User';
+import { useState } from 'react';
 
 function App() {
+  const [friends, setFriends] = useState(['Alex', 'John']);
+
+  const addOne = () => {
+    setFriends([...friends, 'HuXn']);
+  };
+  const removeOne = () => {
+    setFriends(friends.filter((f) => f !== 'John'));
+  };
+  const updateOne = () => {
+    setFriends(friends.map((f) => (f === 'Alex' ? 'Alex Smith' : f)));
+  };
+
   return (
     <>
-      <User
-        img="https://avatars.githubusercontent.com/u/81853373?v=4"
-        name="Bohdan"
-        age={18}
-        hobbies={['Coding', 'Reading', 'Swimming']}
-        realData={{ name: 'Alex', location: 'Ukraine' }}>
-        <p>It`s a children component</p>
-      </User>
+      {friends.map((f) => (
+        <li key={Math.random()}>{f}</li>
+      ))}
+
+      <button onClick={addOne}>Add One Person</button>
+      <button onClick={removeOne}>Remove One Person</button>
+      <button onClick={updateOne}>Update One Person</button>
     </>
   );
 }
