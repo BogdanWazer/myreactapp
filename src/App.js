@@ -4,27 +4,25 @@ import User from './components/User';
 import { useState } from 'react';
 
 function App() {
-  const [friends, setFriends] = useState(['Alex', 'John']);
+  const [username, setUsername] = useState('');
 
-  const addOne = () => {
-    setFriends([...friends, 'HuXn']);
+  const handleChange = (event) => {
+    setUsername(event.target.value);
   };
-  const removeOne = () => {
-    setFriends(friends.filter((f) => f !== 'John'));
-  };
-  const updateOne = () => {
-    setFriends(friends.map((f) => (f === 'Alex' ? 'Alex Smith' : f)));
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`You typed ${username}`);
+    setUsername('');
   };
 
   return (
     <>
-      {friends.map((f) => (
-        <li key={Math.random()}>{f}</li>
-      ))}
-
-      <button onClick={addOne}>Add One Person</button>
-      <button onClick={removeOne}>Remove One Person</button>
-      <button onClick={updateOne}>Update One Person</button>
+      <h1>Form demo</h1>
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={username} onChange={handleChange} />
+        <button>Submin</button>
+      </form>
     </>
   );
 }
